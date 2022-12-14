@@ -10,7 +10,9 @@ frzr-unlock
 # Adding miffe repo
 # add miffe repo and keys
 
-if ! ( pacman -Qi linux-mainline ); then
+if ! grep -q "Server = http://arch.miffe.org/x86_64/" "/etc/pacman.conf" ; then
+
+echo 'adding miffe repo to pacman.conf'
 pacman-key --init
 pacman-key --recv-keys 313F5ABD
 pacman-key --lsign-key 313F5ABD
@@ -21,6 +23,7 @@ Server = http://arch.miffe.org/x86_64/
 ' >> /etc/pacman.conf
 
 fi
+
 
 pacman -Sy linux-mainline linux-mainline-headers
 
