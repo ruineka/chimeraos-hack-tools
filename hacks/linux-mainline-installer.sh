@@ -9,6 +9,8 @@ frzr-unlock
 
 # Adding miffe repo
 # add miffe repo and keys
+
+if ! ( pacman -Qi linux-mainline ); then
 pacman-key --init
 pacman-key --recv-keys 313F5ABD
 pacman-key --lsign-key 313F5ABD
@@ -18,7 +20,10 @@ echo '
 Server = http://arch.miffe.org/x86_64/
 ' >> /etc/pacman.conf
 
+fi
+
 pacman -Sy linux-mainline linux-mainline-headers
 
-cp /boot/initramfs-linux-mainline /boot/chimeraos*/initramfs-linux.img 
-cp /boot/vmlinuz-linux-mainline /boot/chimeraos*/vmlinuz-linux
+mv /boot/initramfs-linux-mainline.img /boot/chimeraos*/initramfs-linux.img 
+mv /boot/vmlinuz-linux-mainline /boot/chimeraos*/vmlinuz-linux
+rm /boot/initramfs-linux-mainline-fallback.img
