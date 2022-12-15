@@ -9,7 +9,7 @@ fi
 kernel_parameters="quiet splash loglevel=3 rd.systemd.show_status=auto rd.udev.log_priority=3 ibt=off split_lock_detect=off"
 
 mkdir -p /run/media/boot
-mount /dev/nvme0n1p1 /run/media/boot
+mount -L frzr_efi /run/media/boot
 
 sed -i "s/quiet splash/${kernel_parameters}/g" /run/media/boot/EFI/BOOT/syslinux.cfg
 umount -l /run/media/boot
