@@ -1,4 +1,4 @@
-#!/bin/bash/
+#!/bin/bash
 
 if [ $EUID -ne 0 ]; then
 	echo "$(basename $0) must be run as root"
