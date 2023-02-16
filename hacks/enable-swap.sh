@@ -5,7 +5,7 @@ if [ $EUID -ne 0 ]; then
 	exit 1
 fi
 
-cd ~/
+cd /user/gamer
 
 if [ ! -f /home/gamer/swapfile ] ; then
         truncate -s 0 swapfile
