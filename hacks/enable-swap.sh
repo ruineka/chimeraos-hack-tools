@@ -7,12 +7,17 @@ fi
 
 cd ~/
 
-truncate -s 0 swapfile
-chattr +C swapfile
-fallocate -l 4G swapfile
-chmod 0600 swapfile
-mkswap swapfile
-swapon swapfile
+if [ ! -f /home/gamer/swapfile ] ; then
+        truncate -s 0 swapfile
+        chattr +C swapfile
+        fallocate -l 4G swapfile
+        chmod 0600 swapfile
+        mkswap swapfile
+        swapon swapfile
+else
+        echo "swapfile already exists, exiting"
+        exit 0
+fi
 
 
 echo "/home/gamer/swapfile        none        swap        defaults      0 0" >> /etc/fstab
