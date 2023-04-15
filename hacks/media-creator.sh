@@ -20,7 +20,7 @@ if ! (whiptail --yesno "WARNING: $DISK will now be formatted. All data on the di
 	exit 1
 fi
 
-sudo mkfs -t ext4 -L CHIMERA_UPDATE $DISK
+sudo mkfs -t ext4 -L FRZR_UPDATE $DISK
 echo "Finished!"
 
 
