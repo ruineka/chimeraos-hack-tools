@@ -21,12 +21,12 @@ case "$1" in
         search_string="$2"
 
         # Check if the string is already present in the entry file
-        if grep -q "$search_string" "$entry_file"; then
+        if grep -qF "$search_string" "$entry_file"; then
             echo "The string '$search_string' is already present in $entry_file"
         else
             # If the string is not present, append it to the end of the kernel parameters
             echo "The string '$search_string' is not present in $entry_file"
-            sed -i "/^options/ s/\s*$/ $search_string/" "$entry_file"
+            sed -i "/^options/ s~\$~ $search_string~" "$entry_file"
             echo "Added '$search_string' to the end of the kernel parameters in $entry_file"
         fi
         ;;
@@ -35,9 +35,9 @@ case "$1" in
         remove_string="$2"
 
         # Check if the string is present in the entry file
-        if grep -q "$remove_string" "$entry_file"; then
+        if grep -qF "$remove_string" "$entry_file"; then
             # If the string is present, remove it from the kernel parameters
-            sed -i "s/\b$remove_string\b//" "$entry_file"
+            sed -i "s~ $remove_string~~" "$entry_file"
             echo "Removed '$remove_string' from the kernel parameters in $entry_file"
         else
             echo "The string '$remove_string' is not present in $entry_file"
