@@ -9,7 +9,7 @@ sudo pacman -S cpio iasl
 # Setup DSDT
 cd ~/
 mkdir -p kernel/firmware/acpi/
-curl -L -o ~/kernel/firmware/acpi/dsdt.dsl https://github.com/ChimeraOS/device-quirks/raw/systemd-boot/usr/lib/firmware/dsdt/ayaneo_air_plus.dsl
+curl -L -o ~/kernel/firmware/acpi/dsdt.dsl https://raw.githubusercontent.com/ruineka/chimeraos-hack-tools/main/temp_fixes/air_plus/ayaneo_air_plus.dsl
 iasl -tc ~/kernel/firmware/acpi/dsdt.dsl
 find kernel | cpio -H newc --create > acpi_override
 sudo cp acpi_override /boot
