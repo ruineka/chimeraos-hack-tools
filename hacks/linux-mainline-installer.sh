@@ -25,7 +25,7 @@ Server = http://arch.miffe.org/x86_64/
 fi
 
 
-pacman -Sy linux-mainline linux-mainline-headers
+pacman -Sy dkms linux-mainline linux-mainline-headers
 
 mv /boot/initramfs-linux-mainline.img /boot/chimeraos*/initramfs-linux.img 
 mv /boot/vmlinuz-linux-mainline /boot/chimeraos*/vmlinuz-linux
