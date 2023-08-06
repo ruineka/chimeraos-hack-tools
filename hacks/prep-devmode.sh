@@ -18,5 +18,8 @@ pacman -S --noconfirm archlinux-keyring
 pacman -S --noconfirm base-devel git cmake
 
 # Install kernel headers
-KERNEL=$(uname -r | sed '0,/-/{s/-/./}')
-pacman -U --noconfirm 'https://archive.archlinux.org/packages/l/linux-headers/linux-headers-'$KERNEL'-x86_64.pkg.tar.zst'
+sed -i 's/SigLevel    = Required DatabaseOptional/SigLevel = Never/g' /etc/pacman.conf
+KERNEL_VER=$(uname -r | sed '0,/-/{s/-/./}' | sed 's/chimeraos/chos/g' | sed 's/chos-/chos/g' )
+KERNEL_FOLDER=$(uname -r | sed '0,/-/{s/-/./}' | sed 's/chimeraos/chos/g' | sed 's/.chos-/-chos/g' )
+HEADERS_FILE='https://github.com/ChimeraOS/linux-chimeraos/releases/download/'$KERNEL_FOLDER'/linux-chimeraos-headers-'$KERNEL_VER'-1-x86_64.pkg.tar.zst'
+pacman -U --noconfirm $HEADERS_FILE
