@@ -19,7 +19,7 @@ pacman -S --noconfirm base-devel git cmake
 
 # Install kernel headers
 sed -i 's/SigLevel    = Required DatabaseOptional/SigLevel = Never/g' /etc/pacman.conf
-KERNEL_VER=$(uname -r | sed '0,/-/{s/-/./}' | sed 's/chimeraos//g' )
-KERNEL_FOLDER=$(uname -r | sed '0,/-/{s/-/./}' | sed 's/chimeraos//g' | sed 's/.chos-/-chos/g' )
+KERNEL_VER=$(uname -r | sed '0,/-/{s/-/./}' | sed 's/chimeraos-//g' )
+KERNEL_FOLDER=$(uname -r | sed '0,/-/{s/-/./}' | sed 's/chimeraos-//g' | sed 's/.chos/-chos/g' )
 HEADERS_FILE='https://github.com/ChimeraOS/linux-chimeraos/releases/download/v'$KERNEL_FOLDER'/linux-chimeraos-headers-'$KERNEL_VER'-x86_64.pkg.tar.zst'
 pacman -U --noconfirm $HEADERS_FILE
